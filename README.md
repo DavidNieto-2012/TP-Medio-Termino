@@ -22,7 +22,7 @@ Integrante 1 RODRI: Estado y Persistencia del Carrito
 
 Integrante 2 BARBY: Servicios de API y Lógica de Home
 
--Crear el módulo/helper de fetch para consumir los endpoints GET de la API ([https://ecommerce.fedegonzalez.com/docs](https://ecommerce.fedegonzalez.com/docs)).  
+-Crear el módulo/helper de fetch para consumir los endpoints GET de la API [https://ecommerce.fedegonzalez.com/docs].  
 -Implementar la petición al endpoint /products para obtener el catálogo completo.  
 -Desarrollar la lógica de filtrado en JS para seleccionar qué mostrar en Home (etiquetas de destacado, promoción o mostrar_en_home).  
 

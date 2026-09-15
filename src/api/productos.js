@@ -1,0 +1,1 @@
+// Funciones que llaman a la API y devuelven datos ya procesados: "traer todos los productos", "traer solo los de una categoría", etc
