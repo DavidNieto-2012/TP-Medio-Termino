@@ -1,3 +1,13 @@
+
+
+Grupo 6: 
+- Garcia Schmidt Barbara
+- Santillan Jesus Rodrigo
+- Nieto David
+
+
+REPARTO DE ACTIVIDADES
+
 Etapa 1: Funcionalidades (Lógica, API y Persistencia)
 Integrante 1: Estado y Persistencia del CarritoCrear el módulo JS para manipular localStorage con setItem y getItem.  
 
