@@ -1,19 +1,66 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-Currently, two official plugins are available:
+Grupo 6: 
+- Garcia Schmidt Barbara
+- Santillan Jesus Rodrigo
+- Nieto David
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+REPARTO DE ACTIVIDADES
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Etapa 1: Funcionalidades (Lógica, API y Persistencia)
+Integrante 1: Estado y Persistencia del CarritoCrear el módulo JS para manipular localStorage con setItem y getItem.  
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+-rogramar las funciones core: agregar producto, quitar producto, vaciar carrito y cálculo de totales (cantidad y precio).  
 
-## Expanding the Oxlint configuration
+-Establecer el sistema de eventos (Custom Events) para que cualquier parte de la app avise al carrito cuando se modifica un ítem.  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+
+Integrante 2: Servicios de API y Lógica de Home
+
+-Crear el módulo/helper de fetch para consumir los endpoints GET de la API ([https://ecommerce.fedegonzalez.com/docs](https://ecommerce.fedegonzalez.com/docs)).  
+-Implementar la petición al endpoint /products para obtener el catálogo completo.  
+-Desarrollar la lógica de filtrado en JS para seleccionar qué mostrar en Home (etiquetas de destacado, promoción o mostrar_en_home).  
+
+Integrante 3: Enrutamiento por URL y Filtros Dinámicos
+
+Implementar la lectura de parámetros en listado.html usando new URLSearchParams(window.location.search) para capturar categoria. 
+
+Crear la lógica para filtrar en JavaScript el listado general de /products según el ID de categoría obtenido. 
+
+Implementar la lectura de producto en ficha.html con URLSearchParams y la llamada puntual a la API con /products/{id}.  
+
+
+
+
+
+Etapa 2: Renderizado (Componentes Lit, TailwindCSS y Mobile-First)
+
+
+
+Integrante 1: Componentes del Carrito y Setup Base
+
+-Inicializar el proyecto con Vite, Lit y TailwindCSS, armando el README.md grupal en GitHub.  
+
+-Desarrollar en Lit el componente visual del Carrito (drawer/modal o sección detallada) con los totales y el botón de vaciar. 
+
+-Crear el botón/badge del carrito para el header que actualice dinámicamente la cantidad de productos visibles.  
+
+-Maquetar todo con Tailwind asegurando diseño mobile-first.  
+
+
+
+Integrante 2: Estructura Global, Home y Card Reutilizable
+
+-Crear los componentes compartidos: Header/Navbar y Footer responsivos con Tailwind.  
+-Diseñar y programar el componente Lit <product-card> (imagen, título, precio, enlace a ficha y botón de agregar al carrito).  
+
+-Renderizar la página index.html estructurando las secciones de promociones/destacados con Tailwind.  
+
+
+
+Integrante 3: Vistas de Listado y Ficha de DetalleMaquetar y renderizar listado.html mostrando la grilla responsiva de productos con Tailwind y reutilizando <product-card>.  
+
+-Diseñar y programar en Lit la vista completa de ficha.html (galería/foto principal, descripción completa, precio y botón de compra).  
+
+-Implementar estados visuales de carga (loaders) y mensaje de "categoría vacía" adaptados a pantallas móviles y desktop.  
