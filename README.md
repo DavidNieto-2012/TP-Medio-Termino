@@ -3,11 +3,16 @@
 - Santillan, Rodrigo Jesus
 - Nieto, David
 
-### Tecnologías utilizadas
+## Tecnologías utilizadas
 
 
-### Página de inspiración
+## Página de inspiración
 https://www.coto.com.ar/
+
+## Cómo ejecutar el proyecto
+  Ejecutá: npm run dev
+  Abrí la URL: http://localhost:5173/
+  Presioná Ctrl + Shift + R para forzar recarga.
 
 
 ## REPARTO DE ACTIVIDADES
@@ -22,9 +27,9 @@ Integrante 1 RODRI: Estado y Persistencia del Carrito
 
 Integrante 2 BARBY: Servicios de API y Lógica de Home
 
--Crear el módulo/helper de fetch para consumir los endpoints GET de la API [https://ecommerce.fedegonzalez.com/docs].  
--Implementar la petición al endpoint /products para obtener el catálogo completo.  
--Desarrollar la lógica de filtrado en JS para seleccionar qué mostrar en Home (etiquetas de destacado, promoción o mostrar_en_home).  
+-Crear el módulo/helper de fetch para consumir los endpoints GET de la API [https://ecommerce.fedegonzalez.com/docs].  LISTO
+-Implementar la petición al endpoint /products para obtener el catálogo completo.  LISTO
+-Desarrollar la lógica de filtrado en JS para seleccionar qué mostrar en Home (etiquetas de destacado, promoción o mostrar_en_home).  LISTO
 
 Integrante 3 DAVID: Enrutamiento por URL y Filtros Dinámicos
 

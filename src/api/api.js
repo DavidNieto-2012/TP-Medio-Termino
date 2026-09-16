@@ -2,7 +2,7 @@
 
 // El valor de las constantes se obtienen de las variables de entorno definidas en el archivo .env
 export const API_URL = import.meta.env.VITE_API_URL;
-export const API_TOKEN = import.meta.env.VITE_API_TOKEN;
+const API_TOKEN = import.meta.env.VITE_API_TOKEN;
 
 
 export function crearHeaders() {                    //Genera el objeto de headers (cabeceras HTTP) que se usa en las peticiones fetch

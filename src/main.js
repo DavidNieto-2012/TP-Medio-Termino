@@ -1,6 +1,13 @@
+// Aquí se decide qué componente se va a renderizar en la página principal (index.html) del proyecto. 
+
 import './index.css'
 import './components/tp-medio-termino.js'
+import { obtenerProductos } from "./api/productos.js"
 
 const root = document.getElementById('root')
 
 root.innerHTML = '<tp-medio-termino></tp-medio-termino>'
+
+//provisorio para ver si funciona la conexión con la API y se pueden traer los productos
+const productos = await obtenerProductos()
+console.log(productos)
