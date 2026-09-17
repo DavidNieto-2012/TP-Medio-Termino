@@ -9,8 +9,10 @@ import stylesCarro from '../../styles/carrito.css?inline'
 const tailwindStyles = new CSSStyleSheet();
 
 //3ro Inyecta los estilos de Tailwind en la hoja de estilos
-tailwindStyles.replaceSync(styles); 
-tailwindStyles.replaceSync(stylesCarro);
+tailwindStyles.replaceSync(`
+    ${styles}
+    ${stylesCarro}
+`);
 
 // Exporta la clase base que extiende de LitElement y aplica los estilos de Tailwind
 export default tailwindStyles;
