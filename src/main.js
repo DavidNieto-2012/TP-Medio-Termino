@@ -1,4 +1,4 @@
-import './index.css'
+
 import './components/tp-medio-termino.js'
 
 const root = document.getElementById('root')

@@ -57,7 +57,7 @@ class TpMedioTermino extends LitElement {
   render() {
     return html`
       <div class="card">
-        <h1>Proyecto con Lit</h1>
+        <h1 class="text-red-500">Proyecto con Lit</h1>
         <p>Este componente funciona con Lit y Vite. Presioná el botón para probar reactividad.</p>
         <button @click=${this._increment}>Contador: ${this.count}</button>
       </div>
