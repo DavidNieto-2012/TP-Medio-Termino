@@ -6,11 +6,7 @@ const CLAVE_STORAGE = "carrito";
 function leerCarrito() {
   // lee de localStorage y devuelve el array (o [] si no hay nada)
   let carrito = localStorage.getItem(CLAVE_STORAGE);
-  if (carrito) {
-    return JSON.parse(carrito);
-  } else {
-    return [];
-  }
+  return carrito ? JSON.parse(carrito) : [];
 }
 
 function guardarCarrito(items) {
@@ -32,7 +28,7 @@ export function agregarProducto(producto) {
     item.cantidad++;
   } else {
     // si no existe, agregarlo con cantidad 1
-    let nuevoItem = [producto.id, producto.title, producto.price, producto.pictures[0]];
+    let nuevoItem = [producto.id, producto.title, producto.price, producto.pictures[0] ?? null];
     // los ... spread operator permite crear un nuevo objeto copiando las propiedades de otro. Se agrega una propiedad adicional 'cantidad' con valor 1
     carrito.push({ ...nuevoItem, cantidad: 1 });
   }
