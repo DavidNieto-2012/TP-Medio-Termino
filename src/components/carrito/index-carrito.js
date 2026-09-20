@@ -5,3 +5,4 @@
 import './carrito-boton.js'
 import './carrito-detalle.js'
 import './carrito-item.js'
+import './carrito-drawer.js'

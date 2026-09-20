@@ -11,13 +11,13 @@ function leerCarrito() {
 
 function guardarCarrito(items) {
   // guarda el array en localStorage
-  localStorage.setItem(CLAVE_STORAGE, JSON.stringify(items));   
+  localStorage.setItem(CLAVE_STORAGE, JSON.stringify(items));
 }
 
 function notificarCambio(items) {
   // dispara el CustomEvent 'carrito-actualizado'
-    const event = new CustomEvent("carrito-actualizado", { detail: items });
-    window.dispatchEvent(event);
+  const event = new CustomEvent("carrito-actualizado", { detail: items });
+  window.dispatchEvent(event);
 }
 
 export function agregarProducto(producto) {
@@ -28,12 +28,22 @@ export function agregarProducto(producto) {
     item.cantidad++;
   } else {
     // si no existe, agregarlo con cantidad 1
-    let nuevoItem = [producto.id, producto.title, producto.price, producto.pictures[0] ?? null];
+    let nuevoItem = { id: producto.id, title: producto.title, price: producto.price, picture: producto.pictures[0] ?? null };
     // los ... spread operator permite crear un nuevo objeto copiando las propiedades de otro. Se agrega una propiedad adicional 'cantidad' con valor 1
     carrito.push({ ...nuevoItem, cantidad: 1 });
   }
   guardarCarrito(carrito);
   notificarCambio(carrito);
+}
+
+export function incrementarProducto(id) {
+  let carrito = leerCarrito();
+  let item = carrito.find((i) => i.id === id);
+  if (item) {
+    item.cantidad++;
+    guardarCarrito(carrito);
+    notificarCambio(carrito);
+  }
 }
 
 export function quitarProducto(id) {
@@ -44,16 +54,16 @@ export function quitarProducto(id) {
 }
 
 export function decrementarProducto(id) {
-    let carrito = leerCarrito();
-    let item = carrito.find((i) => i.id === id);
-    if (item) {
-        item.cantidad--;
-        if (item.cantidad <= 0) {
-            carrito = carrito.filter((i) => i.id !== id);
-        }
-        guardarCarrito(carrito);
-        notificarCambio(carrito);
+  let carrito = leerCarrito();
+  let item = carrito.find((i) => i.id === id);
+  if (item) {
+    item.cantidad--;
+    if (item.cantidad <= 0) {
+      carrito = carrito.filter((i) => i.id !== id);
     }
+    guardarCarrito(carrito);
+    notificarCambio(carrito);
+  }
 }
 export function vaciarCarrito() {
   guardarCarrito([]);
@@ -65,10 +75,10 @@ export function obtenerItems() {
 }
 
 export function obtenerTotales() {
-    let carrito = leerCarrito();
-    // reduce() recorre el array y acumula un valor a medida que visita cada elemento
-    //array.reduce((acumulador, elementoActual) => { ... }, valorInicial)
-    let totalCantidad = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-    let totalPrecio = carrito.reduce((acc, item) => acc + item.cantidad * item.price, 0);
-    return { totalCantidad, totalPrecio };
+  let carrito = leerCarrito();
+  // reduce() recorre el array y acumula un valor a medida que visita cada elemento
+  //array.reduce((acumulador, elementoActual) => { ... }, valorInicial)
+  let totalCantidad = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+  let totalPrecio = carrito.reduce((acc, item) => acc + item.cantidad * item.price, 0);
+  return { totalCantidad, totalPrecio };
 }

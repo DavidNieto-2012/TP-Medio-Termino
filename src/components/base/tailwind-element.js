@@ -1,7 +1,7 @@
 // Clase base que inyecta los estilos de Tailwind en el Shadow DOM 
 // de los componentes que la heredan.
 
-// 1ro Genera el contenido del css como texto
+// 1ro ?inline Genera el contenido del css como texto
 import styles from '../../index.css?inline'
 import stylesCarro from '../../styles/carrito.css?inline'
 
