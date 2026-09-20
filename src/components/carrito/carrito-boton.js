@@ -36,7 +36,7 @@ class CarritoBoton extends LitElement {
 
     render() {
         return html`
-        <button class="btn" type="button" aria-label="Ver carrito" 
+        <button class="carrito-boton" type="button" aria-label="Ver carrito" 
             title="Ver carrito"
             @click=${this._onClick}
         >
@@ -45,7 +45,7 @@ class CarritoBoton extends LitElement {
             <circle cx="17" cy="18" r="1.5"></circle>
             <path d="M3 4h2l2.4 9.5a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L19 7H7"></path>
         </svg>
-        <span class="ml-2 text-sm font-medium">${this.cantidad}</span>
+        <span class="badge">${this.cantidad}</span>
         </button>
     `;
     }

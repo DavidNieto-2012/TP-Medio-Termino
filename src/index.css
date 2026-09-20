@@ -3,7 +3,7 @@
 :root {
   font-family: Inter, 'Segoe UI', sans-serif;
   color: #e2e8f0;
-  background: #0f172a;
+  background: hsl(240, 5%, 96%);
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -16,10 +16,11 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   min-height: 100%;
-  background: linear-gradient(135deg, #0f172a 0%, #111827 100%);
+  background: #f8f8fa;
 }
 
 body {
@@ -31,4 +32,56 @@ body {
 #root {
   width: min(100%, 960px);
   padding: 2rem;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  min-width: 3.5rem;
+  min-height: 3.5rem;
+  border: 0;
+  border-radius: 9999px;
+  background: #e10600;
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(225, 6, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: #c80500;
+  box-shadow: 0 14px 24px rgba(200, 5, 0, 0.38);
+  transform: translateY(-1px) scale(1.04);
+}
+
+.btn::after {
+  content: 'Ver carrito';
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.625rem);
+  transform: translateX(-50%) translateY(0.5rem);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  background: rgba(15, 23, 42, 0.96);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.45rem 0.7rem;
+  border-radius: 9999px;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.2);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover::after,
+.btn:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }

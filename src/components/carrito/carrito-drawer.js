@@ -44,23 +44,21 @@ class CarritoDrawer extends LitElement {
     }
     return html`
       <div
-        class="fixed inset-0 bg-black/50 z-50 flex justify-end"
+        class="carrito-drawer-overlay ${this.abierto ? 'abierto' : ''}"
         @click=${this._carritoCerrar}
-      >
-        <div
-          class="w-full sm:w-96 h-full bg-slate-900 shadow-lg overflow-y-auto"
-          @click=${(e) => e.stopPropagation()}
-        >
-          <div class="flex justify-between items-center p-4 border-b border-slate-700">
-            <h2 class="text-lg font-semibold">Tu carrito</h2>
-            <button 
-              class="text-2xl leading-none px-2 hover:text-red-500"
-              @click=${this._carritoCerrar}
-              aria-label="Cerrar carrito"
-            > ✕ </button>
-          </div>
-          <carrito-detalle></carrito-detalle>
+      ></div>
+      <div class="carrito-drawer ${this.abierto ? 'abierto' : ''}">
+        <div class="flex justify-between items-center p-4 border-b border-slate-200">
+          <h2 class="text-lg font-semibold">Tu carrito</h2>
+          <button
+            class="text-2xl leading-none px-2 hover:text-red-500"
+            @click=${this._carritoCerrar}
+            aria-label="Cerrar carrito"
+          >
+            ✕
+          </button>
         </div>
+        <carrito-detalle></carrito-detalle>
       </div>
     `;
   }

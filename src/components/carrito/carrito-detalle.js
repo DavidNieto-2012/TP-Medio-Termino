@@ -41,6 +41,10 @@ class CarritoDetalle extends LitElement {
     vaciarCarrito();
   }
 
+  _onComprar() {
+    alert('Función de compra no disponible por el momento');
+  }
+
   // se ejecuta cuando el componente se agrega al DOM
   connectedCallback() {
     super.connectedCallback();
@@ -74,24 +78,33 @@ class CarritoDetalle extends LitElement {
             `)
       }
 
-        <div class="mt-4 pt-4 border-t">
-          <p class="text-sm text-gray-400">Cantidad de productos: ${totalCantidad}</p>
-          <p class="text-lg font-bold">Total: $${totalPrecio.toFixed(2)}</p>
-        </div>
+        <div class="carrito-detalle-footer">
+          <div class="carrito-detalle-total">
+            <span>Total</span>
+            <span>$${totalPrecio.toFixed(2)}</span>
+          </div>
+          <div class="carrito-detalle-acciones">
+            <button class="btn-vaciar" @click=${this._onVaciar}>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 6h18"></path>
+                <path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"></path>
+                <path d="M19 6l-1 14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1L5 6"></path>
+                <path d="M10 11v6"></path>
+                <path d="M14 11v6"></path>
+              </svg>
+              Vaciar carrito
+            </button>
+            <button class="btn-comprar" @click=${this._onComprar}>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="18" r="1.5"></circle>
+                <circle cx="17" cy="18" r="1.5"></circle>
+                <path d="M3 4h2l2.4 9.5a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L19 7H7"></path>
+              </svg>
+              Ver carrito y comprar
+            </button>
+          </div>
+        </div>  
 
-        <button
-          class="mt-4 w-full py-2 bg-green-600 text-white rounded hover:bg-green-700"
-          @click=${this._onVaciar}
-        >
-          Pagar ahora
-        </button>
-
-        <button
-          class="mt-4 py-2 px-4 bg-red-600 text-white rounded hover:bg-red-700"
-          @click=${this._onVaciar}
-        >
-          Vaciar carrito
-        </button>
       </div>
     `;
   }
