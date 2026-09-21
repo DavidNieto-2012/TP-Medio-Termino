@@ -8,6 +8,8 @@
 
 ## Página de inspiración
 https://www.coto.com.ar/
+usuario de prueba: Grupo6
+clave: Grupo6
 
 ## Cómo ejecutar el proyecto
   Ejecutá: npm run dev
@@ -43,10 +45,10 @@ Integrante 3 DAVID: Enrutamiento por URL y Filtros Dinámicos
 
 Integrante 1 BARBY: Componentes del Carrito y Setup Base
 
--Inicializar el proyecto con Vite, Lit y TailwindCSS, armando el README.md grupal en GitHub.  
--Desarrollar en Lit el componente visual del Carrito (drawer/modal o sección detallada) con los totales y el botón de vaciar. 
--Crear el botón/badge del carrito para el header que actualice dinámicamente la cantidad de productos visibles.  
--Maquetar todo con Tailwind asegurando diseño mobile-first.  
+-Inicializar el proyecto con Vite, Lit y TailwindCSS, armando el README.md grupal en GitHub.  LISTO
+-Desarrollar en Lit el componente visual del Carrito (drawer/modal o sección detallada) con los totales y el botón de vaciar. LISTO
+-Crear el botón/badge del carrito para el header que actualice dinámicamente la cantidad de productos visibles.  LISTO
+-Maquetar todo con Tailwind asegurando diseño mobile-first.  LISTO
 
 
 Integrante 2 DAVID: Estructura Global, Home y Card Reutilizable

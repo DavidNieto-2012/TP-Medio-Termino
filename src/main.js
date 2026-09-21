@@ -1,3 +1,4 @@
+
 // 1. Carga de los estilos globales con TailwindCSS
 import './index.css';
 
@@ -21,12 +22,12 @@ async function probarConexionAPI() {
     console.log("Cargando productos desde la API...");
     
     const productos = await obtenerProductos();
-    console.log("📦 Lista completa de productos:", productos);
+    console.log(" Lista completa de productos:", productos);
 
     const productosPromo = await obtenerProductosEnPromocion();
-    console.log("🔥 Productos en promoción:", productosPromo);
+    console.log(" Productos en promoción:", productosPromo);
   } catch (error) {
-    console.error("❌ Error al conectar con la API:", error);
+    console.error(" Error al conectar con la API:", error);
   }
 }
 
