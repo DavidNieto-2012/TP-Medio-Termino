@@ -24,3 +24,28 @@ export async function obtenerProductosEnPromocion() {
   const productos = await obtenerProductos();
   return productos.filter((producto) => tieneEtiqueta(producto, "Promoción"));
 }
+
+
+// Se Obtiene el detalle de un único producto por su ID
+export async function obtenerProductoPorId(id) {
+  if (!id) throw new Error("Se requiere un ID de producto");
+
+  const respuesta = await fetch(`${API_URL}/products/${id}`, {
+    method: "GET",
+    headers: crearHeaders(),
+  });
+  return procesarRespuesta(respuesta);
+}
+//---------------------------------------------------------------------------------------
+// Filtra una lista de productos según el ID o nombre de categoría
+export function filtrarProductosPorCategoria(productos, categoriaId) {
+  if (!categoriaId) return productos; // Si no hay filtro, devuelve todos
+
+  return productos.filter((producto) => {
+    // Ajustar según la propiedad exacta que devuelva la API (ej. producto.category_id o producto.category?.id)
+    return String(producto.category_id) === String(categoriaId) ||
+      String(producto.category?.id) === String(categoriaId);
+  });
+}
+
+
