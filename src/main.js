@@ -9,6 +9,8 @@ import './components/carrito/index-carrito.js'
 // 3. Importación de las funciones de la API
 import { obtenerProductos, obtenerProductosEnPromocion } from "./api/productos.js";
 
+import { obtenerCarrito, agregarAlCarrito } from './cart.js';
+
 // 4. Seleccionar el contenedor principal del HTML
 const root = document.getElementById('root');
 
@@ -31,6 +33,16 @@ async function probarConexionAPI() {
 
     const productosPromo = await obtenerProductosEnPromocion();
     console.log(" Productos en promoción:", productosPromo);
+
+    //agrego tres productos al carro
+    const productosParaCarrito = productos.slice(0, 3);
+
+    productosParaCarrito.forEach(producto => {
+      agregarAlCarrito(producto);
+    });
+
+    console.log(obtenerCarrito());
+
   } catch (error) {
     console.error(" Error al conectar con la API:", error);
   }
