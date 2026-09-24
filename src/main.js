@@ -4,6 +4,7 @@ import './index.css';
 
 // 2. Registro del componente principal del proyecto
 import './components/tp-medio-termino.js';
+import './components/carrito/index-carrito.js'
 
 // 3. Importación de las funciones de la API
 import { obtenerProductos, obtenerProductosEnPromocion } from "./api/productos.js";
@@ -13,14 +14,18 @@ const root = document.getElementById('root');
 
 // 5. Inyectar el componente principal de Lit en la pantalla
 if (root) {
-  root.innerHTML = '<tp-medio-termino></tp-medio-termino>';
+  root.innerHTML = `
+    <tp-medio-termino></tp-medio-termino>
+    <carrito-boton></carrito-boton>
+    <carrito-drawer></carrito-drawer>
+  `;
 }
 
 // 6. Función de prueba para verificar en consola que la API responde correctamente
 async function probarConexionAPI() {
   try {
     console.log("Cargando productos desde la API...");
-    
+
     const productos = await obtenerProductos();
     console.log(" Lista completa de productos:", productos);
 
