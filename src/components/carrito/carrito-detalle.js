@@ -2,7 +2,7 @@
 
 import { LitElement, html } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
-import { obtenerItems, incrementarProducto, decrementarProducto, quitarProducto, vaciarCarrito, obtenerTotales } from '../../store/carrito-storage.js';
+import { obtenerCarrito, incrementarProducto, decrementarProducto, quitarProducto, vaciarCarrito, obtenerTotalesCarrito } from '../../cart.js';
 
 class CarritoDetalle extends LitElement {
   static styles = [tailwindStyles];
@@ -18,7 +18,7 @@ class CarritoDetalle extends LitElement {
 
   // función que se ejecuta cuando se dispara el evento 'carrito-actualizado'
   _actualizarItems = () => {
-    const items = obtenerItems();
+    const items = obtenerCarrito();
     this.items = items;
   }
 
@@ -48,7 +48,7 @@ class CarritoDetalle extends LitElement {
   // se ejecuta cuando el componente se agrega al DOM
   connectedCallback() {
     super.connectedCallback();
-    this.items = obtenerItems();
+    this.items = obtenerCarrito();
     window.addEventListener('carrito-actualizado', this._actualizarItems);
     this.addEventListener('carrito-incrementar', this._carritoIncrementar);
     this.addEventListener('carrito-decrementar', this._carritoDecrementar);
@@ -66,7 +66,7 @@ class CarritoDetalle extends LitElement {
 
 
   render() {
-    const { totalCantidad, totalPrecio } = obtenerTotales();
+    const totalPrecio = obtenerTotalesCarrito().precioTotal;
 
     return html`
       <div class="p-4">
