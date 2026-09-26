@@ -1,11 +1,21 @@
 // el contenido de adentro del drawer — la lista de items, los totales, el botón de vaciar. Este es el que se suscribe a carrito-actualizado para mantenerse sincronizado
 
-import { LitElement, html } from 'lit';
+import { LitElement, html, css } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
-import { obtenerItems, incrementarProducto, decrementarProducto, quitarProducto, vaciarCarrito, obtenerTotales } from '../../store/carrito-storage.js';
+import { obtenerCarrito, incrementarProducto, decrementarProducto, quitarProducto, vaciarCarrito, obtenerTotalesCarrito } from '../../cart.js';
 
 class CarritoDetalle extends LitElement {
-  static styles = [tailwindStyles];
+  static styles = [
+    tailwindStyles,
+    css`
+      :host {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+    `,
+  ];
 
   static properties = {
     items: { type: Array },
@@ -18,7 +28,7 @@ class CarritoDetalle extends LitElement {
 
   // función que se ejecuta cuando se dispara el evento 'carrito-actualizado'
   _actualizarItems = () => {
-    const items = obtenerItems();
+    const items = obtenerCarrito();
     this.items = items;
   }
 
@@ -48,7 +58,7 @@ class CarritoDetalle extends LitElement {
   // se ejecuta cuando el componente se agrega al DOM
   connectedCallback() {
     super.connectedCallback();
-    this.items = obtenerItems();
+    this.items = obtenerCarrito();
     window.addEventListener('carrito-actualizado', this._actualizarItems);
     this.addEventListener('carrito-incrementar', this._carritoIncrementar);
     this.addEventListener('carrito-decrementar', this._carritoDecrementar);
@@ -66,18 +76,19 @@ class CarritoDetalle extends LitElement {
 
 
   render() {
-    const { totalCantidad, totalPrecio } = obtenerTotales();
+    const totalPrecio = obtenerTotalesCarrito().precioTotal;
 
     return html`
-      <div class="p-4">
-        <h2 class="text-lg font-semibold mb-4">Carrito de Compras</h2>
-        ${this.items.length === 0
-        ? html`<p class="text-sm text-gray-400">El carrito está vacío</p>`
-        : this.items.map(item => html`
-              <carrito-item .item=${item}></carrito-item>
-            `)
-      }
-
+      <div class="carrito-detalle-contenido">
+        <h2 class="text-lg font-semibold mb-4 text-slate-800">Carrito de Compras</h2>
+        <div class="carrito-items">
+          ${this.items.length === 0
+            ? html`<p class="text-sm text-slate-500">El carrito está vacío</p>`
+            : this.items.map(item => html`
+                <carrito-item .item=${item}></carrito-item>
+              `)
+          }
+        </div>
         <div class="carrito-detalle-footer">
           <div class="carrito-detalle-total">
             <span>Total</span>
