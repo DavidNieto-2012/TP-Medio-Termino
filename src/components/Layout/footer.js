@@ -16,7 +16,7 @@ export class AppFooter extends LitElement {
 
     render() {
         return html`
-           <footer class="bg-slate-900 text-slate-300 mt-16 border-t border-slate-800">
+           <footer class="bg-slate-900 text-slate-300 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <!-- Logo Neutro -->

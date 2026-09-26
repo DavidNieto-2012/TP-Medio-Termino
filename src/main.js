@@ -3,7 +3,6 @@
 import './index.css';
 
 // 2. Registro del componente principal del proyecto
-import './components/tp-medio-termino.js';
 import './components/carrito/index-carrito.js';
 
 //header y footer

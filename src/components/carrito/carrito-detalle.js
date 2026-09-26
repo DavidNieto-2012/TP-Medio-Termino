@@ -1,11 +1,21 @@
 // el contenido de adentro del drawer — la lista de items, los totales, el botón de vaciar. Este es el que se suscribe a carrito-actualizado para mantenerse sincronizado
 
-import { LitElement, html } from 'lit';
+import { LitElement, html, css } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
 import { obtenerCarrito, incrementarProducto, decrementarProducto, quitarProducto, vaciarCarrito, obtenerTotalesCarrito } from '../../cart.js';
 
 class CarritoDetalle extends LitElement {
-  static styles = [tailwindStyles];
+  static styles = [
+    tailwindStyles,
+    css`
+      :host {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+    `,
+  ];
 
   static properties = {
     items: { type: Array },
@@ -69,15 +79,16 @@ class CarritoDetalle extends LitElement {
     const totalPrecio = obtenerTotalesCarrito().precioTotal;
 
     return html`
-      <div class="p-4">
-        <h2 class="text-lg font-semibold mb-4">Carrito de Compras</h2>
-        ${this.items.length === 0
-        ? html`<p class="text-sm text-gray-400">El carrito está vacío</p>`
-        : this.items.map(item => html`
-              <carrito-item .item=${item}></carrito-item>
-            `)
-      }
-
+      <div class="carrito-detalle-contenido">
+        <h2 class="text-lg font-semibold mb-4 text-slate-800">Carrito de Compras</h2>
+        <div class="carrito-items">
+          ${this.items.length === 0
+            ? html`<p class="text-sm text-slate-500">El carrito está vacío</p>`
+            : this.items.map(item => html`
+                <carrito-item .item=${item}></carrito-item>
+              `)
+          }
+        </div>
         <div class="carrito-detalle-footer">
           <div class="carrito-detalle-total">
             <span>Total</span>
