@@ -2,13 +2,11 @@
 // 1. Carga de los estilos globales con TailwindCSS
 import './index.css';
 
-// 2. Registro del componente principal del proyecto
-import './components/tp-medio-termino.js';
+// 2. Registro de componentes usados
 import './components/carrito/index-carrito.js'
 
 // 3. Importación de las funciones de la API
 import { obtenerProductos, obtenerProductosEnPromocion } from "./api/productos.js";
-
 import { obtenerCarrito, agregarAlCarrito } from './cart.js';
 
 // 4. Seleccionar el contenedor principal del HTML
@@ -17,8 +15,6 @@ const root = document.getElementById('root');
 // 5. Inyectar el componente principal de Lit en la pantalla
 if (root) {
   root.innerHTML = `
-    <tp-medio-termino></tp-medio-termino>
-    <carrito-boton></carrito-boton>
     <carrito-drawer></carrito-drawer>
   `;
 }
