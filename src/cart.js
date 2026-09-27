@@ -10,10 +10,10 @@ export function obtenerCarrito() {
 // 2. Guardar en localStorage y notificar a la app
 function guardarCarrito(carrito) {
   localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
-  
+
   // Emitir un evento personalizado para que otros componentes (como el Header) se enteren del cambio
-  window.dispatchEvent(new CustomEvent('carrito-actualizado', { 
-    detail: { carrito } 
+  window.dispatchEvent(new CustomEvent('carrito-actualizado', {
+    detail: { carrito }
   }));
 }
 
@@ -58,7 +58,7 @@ export function vaciarCarrito() {
 // 6. Calcular la cantidad total de ítems y el precio total
 export function obtenerTotalesCarrito() {
   const carrito = obtenerCarrito();
-  
+
   const cantidadTotal = carrito.reduce((acumulado, item) => acumulado + item.cantidad, 0);
   const precioTotal = carrito.reduce((acumulado, item) => {
     const precio = item.price || item.precio || 0;
@@ -66,4 +66,32 @@ export function obtenerTotalesCarrito() {
   }, 0);
 
   return { cantidadTotal, precioTotal };
+}
+
+//funciones para modificar las cantidades en carrito
+export function incrementarProducto(id) {
+  let carrito = obtenerCarrito();
+  let item = carrito.find((i) => i.id === id);
+  if (item) {
+    item.cantidad++;
+    guardarCarrito(carrito);
+  }
+}
+
+export function quitarProducto(id) {
+  let carrito = obtenerCarrito();
+  carrito = carrito.filter((i) => i.id !== id);
+  guardarCarrito(carrito);
+}
+
+export function decrementarProducto(id) {
+  let carrito = obtenerCarrito();
+  let item = carrito.find((i) => i.id === id);
+  if (item) {
+    item.cantidad--;
+    if (item.cantidad <= 0) {
+      carrito = carrito.filter((i) => i.id !== id);
+    }
+    guardarCarrito(carrito);
+  }
 }

@@ -32,10 +32,15 @@ body {
 
 #root {
   width: 100%;
+  flex: 1;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 0;
+}
+
+#root > app-footer {
+  margin-top: auto;
 }
 
 

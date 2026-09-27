@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
-import { obtenerTotales } from '../../store/carrito-storage.js';
+import { obtenerTotalesCarrito } from '../../cart.js';
 
 
 class CarritoBoton extends LitElement {
@@ -17,8 +17,8 @@ class CarritoBoton extends LitElement {
 
     // función que se ejecuta cuando se dispara el evento 'carrito-actualizado'
     _actualizarCantidad = () => {
-        const totales = obtenerTotales();
-        this.cantidad = totales.totalCantidad;
+        const totales = obtenerTotalesCarrito();
+        this.cantidad = totales.cantidadTotal;
     }
 
     // se ejecuta cuando el componente se agrega al DOM
