@@ -18,10 +18,11 @@ const root = document.getElementById('root');
 
 // 5. Inyectar el componente principal de Lit en la pantalla
 if (root) {
-    root.innerHTML = `
+  root.innerHTML = `
     <app-header></app-header>
     <carrito-drawer></carrito-drawer>
     <app-footer></app-footer>
+    
     `;
 }
 
