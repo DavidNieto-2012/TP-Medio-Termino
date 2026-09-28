@@ -12,6 +12,7 @@ const tailwindStyles = new CSSStyleSheet();
 tailwindStyles.replaceSync(`
     ${styles}
     ${stylesCarro}
+    :host { font-family: Inter, 'Segoe UI', sans-serif; }
 `);
 
 // Exporta la clase base que extiende de LitElement y aplica los estilos de Tailwind

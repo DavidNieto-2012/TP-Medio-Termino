@@ -61,7 +61,7 @@ export function vaciarCarrito() {
 // 6. Calcular la cantidad total de ítems y el precio total
 export function obtenerTotalesCarrito() {
   const carrito = obtenerCarrito();
-  
+
   const cantidadTotal = carrito.reduce((acumulado, item) => acumulado + item.cantidad, 0);
   const precioTotal = carrito.reduce((acumulado, item) => {
     const precio = item.price || item.precio || 0;

@@ -11,6 +11,7 @@ import './components/carrito/index-carrito.js';
 
 // 3. Importación de las funciones de la API
 import { obtenerProductos, obtenerProductosEnPromocion } from "./api/productos.js";
+import { obtenerCarrito, agregarAlCarrito } from './cart.js';
 
 // 4. Importación del módulo del Carrito como objeto completo (evita errores de caché de Vite)
 import * as CarritoStorage from './store/carrito-storage.js';

@@ -1,12 +1,22 @@
 // el contenido de adentro del drawer — la lista de items, los totales, el botón de vaciar. Este es el que se suscribe a carrito-actualizado para mantenerse sincronizado
 
-import { LitElement, html } from 'lit';
+import { LitElement, html, css } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
 import './carrito-item.js'; // Importamos el item para asegurar su registro en customElements
 import { obtenerItems, incrementarProducto, decrementarProducto, quitarProducto, vaciarCarrito, obtenerTotales } from '../../store/carrito-storage.js';
 
 class CarritoDetalle extends LitElement {
-  static styles = [tailwindStyles];
+  static styles = [
+    tailwindStyles,
+    css`
+      :host {
+        display: flex;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+    `,
+  ];
 
   static properties = {
     items: { type: Array },
@@ -49,7 +59,7 @@ class CarritoDetalle extends LitElement {
   // se ejecuta cuando el componente se agrega al DOM
   connectedCallback() {
     super.connectedCallback();
-    this.items = obtenerItems();
+    this.items = obtenerCarrito();
     window.addEventListener('carrito-actualizado', this._actualizarItems);
     this.addEventListener('carrito-incrementar', this._carritoIncrementar);
     this.addEventListener('carrito-decrementar', this._carritoDecrementar);

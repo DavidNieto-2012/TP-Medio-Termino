@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
-import { obtenerTotales } from '../../store/carrito-storage.js';
+import { obtenerTotalesCarrito } from '../../cart.js';
 
 class CarritoBoton extends LitElement {
     static styles = [tailwindStyles];
