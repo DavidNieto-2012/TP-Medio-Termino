@@ -2,6 +2,7 @@
 
 import { LitElement, html } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
+import './carrito-item.js'; // Importamos el item para asegurar su registro en customElements
 import { obtenerItems, incrementarProducto, decrementarProducto, quitarProducto, vaciarCarrito, obtenerTotales } from '../../store/carrito-storage.js';
 
 class CarritoDetalle extends LitElement {
@@ -19,7 +20,7 @@ class CarritoDetalle extends LitElement {
   // función que se ejecuta cuando se dispara el evento 'carrito-actualizado'
   _actualizarItems = () => {
     const items = obtenerItems();
-    this.items = items;
+    this.items = [...items]; // Se asigna una nueva referencia para asegurar la reactividad de Lit
   }
 
   _carritoIncrementar = (e) => {
@@ -58,32 +59,32 @@ class CarritoDetalle extends LitElement {
   // se ejecuta cuando el componente se elimina del DOM
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener('carrito-actualizado', this._actualizarItems)
+    window.removeEventListener('carrito-actualizado', this._actualizarItems);
     this.removeEventListener('carrito-incrementar', this._carritoIncrementar);
     this.removeEventListener('carrito-decrementar', this._carritoDecrementar);
     this.removeEventListener('carrito-quitar', this._carritoQuitar);
   }
 
-
   render() {
-    const { totalCantidad, totalPrecio } = obtenerTotales();
+    const totales = obtenerTotales() || {};
+    const totalPrecio = totales.totalPrecio || 0;
 
     return html`
       <div class="p-4">
         <h2 class="text-lg font-semibold mb-4">Carrito de Compras</h2>
         ${this.items.length === 0
-        ? html`<p class="text-sm text-gray-400">El carrito está vacío</p>`
-        : this.items.map(item => html`
+          ? html`<p class="text-sm text-gray-400">El carrito está vacío</p>`
+          : this.items.map(item => html`
               <carrito-item .item=${item}></carrito-item>
             `)
-      }
+        }
 
-        <div class="carrito-detalle-footer">
-          <div class="carrito-detalle-total">
+        <div class="carrito-detalle-footer mt-4 border-t pt-4">
+          <div class="carrito-detalle-total flex justify-between font-bold text-lg mb-4">
             <span>Total</span>
             <span>$${totalPrecio.toFixed(2)}</span>
           </div>
-          <div class="carrito-detalle-acciones">
+          <div class="carrito-detalle-acciones flex gap-2">
             <button class="btn-vaciar" @click=${this._onVaciar}>
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 6h18"></path>
@@ -108,7 +109,6 @@ class CarritoDetalle extends LitElement {
       </div>
     `;
   }
-
 }
 
 customElements.define('carrito-detalle', CarritoDetalle);
