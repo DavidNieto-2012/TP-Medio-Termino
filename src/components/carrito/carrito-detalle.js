@@ -3,7 +3,7 @@
 import { LitElement, html, css } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
 import './carrito-item.js'; // Importamos el item para asegurar su registro en customElements
-import { agregarAlCarrito, obtenerCarrito, obtenerTotalesCarrito, quitarDelCarrito } from '../../cart.js';
+import { agregarAlCarrito, obtenerCarrito, obtenerTotalesCarrito, quitarDelCarrito, vaciarCarrito } from '../../cart.js';
 
 class CarritoDetalle extends LitElement {
   static styles = [
