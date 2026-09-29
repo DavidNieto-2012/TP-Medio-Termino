@@ -1,4 +1,3 @@
-// clave para guardar el carrito en el navegador
 const CLAVE_CARRITO = 'carrito_supermercado';
 
 // 1. Obtener los productos guardados en localStorage
@@ -7,26 +6,24 @@ export function obtenerCarrito() {
   return carritoGuardado ? JSON.parse(carritoGuardado) : [];
 }
 
+
 // 2. Guardar en localStorage y notificar a la app
 function guardarCarrito(carrito) {
   localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
-
-  // Emitir un evento personalizado para que otros componentes (como el Header) se enteren del cambio
-  window.dispatchEvent(new CustomEvent('carrito-actualizado', {
-    detail: { carrito }
+  
+  window.dispatchEvent(new CustomEvent('carrito-actualizado', { 
+    detail: { carrito } 
   }));
 }
 
-// 3. Agregar un producto al carrito
+// 3. Agregar un producto al carrito (ESTA ES LA FUNCIÓN QUE TE PEDÍA EL ERROR)
 export function agregarAlCarrito(producto, cantidad = 1) {
   const carrito = obtenerCarrito();
   const indice = carrito.findIndex(item => item.id === producto.id);
 
   if (indice >= 0) {
-    // Si ya existe en el carrito, sumamos la cantidad
     carrito[indice].cantidad += cantidad;
   } else {
-    // Si no existe, lo agregamos como un item nuevo
     carrito.push({ ...producto, cantidad });
   }
 
@@ -42,13 +39,14 @@ export function quitarDelCarrito(idProducto, soloReducir = false) {
     if (soloReducir && carrito[indice].cantidad > 1) {
       carrito[indice].cantidad -= 1;
     } else {
-      // Eliminar el producto por completo
       carrito = carrito.filter(item => item.id !== idProducto);
     }
   }
 
   guardarCarrito(carrito);
 }
+
+
 
 // 5. Vaciar todo el carrito
 export function vaciarCarrito() {
@@ -68,30 +66,3 @@ export function obtenerTotalesCarrito() {
   return { cantidadTotal, precioTotal };
 }
 
-//funciones para modificar las cantidades en carrito
-export function incrementarProducto(id) {
-  let carrito = obtenerCarrito();
-  let item = carrito.find((i) => i.id === id);
-  if (item) {
-    item.cantidad++;
-    guardarCarrito(carrito);
-  }
-}
-
-export function quitarProducto(id) {
-  let carrito = obtenerCarrito();
-  carrito = carrito.filter((i) => i.id !== id);
-  guardarCarrito(carrito);
-}
-
-export function decrementarProducto(id) {
-  let carrito = obtenerCarrito();
-  let item = carrito.find((i) => i.id === id);
-  if (item) {
-    item.cantidad--;
-    if (item.cantidad <= 0) {
-      carrito = carrito.filter((i) => i.id !== id);
-    }
-    guardarCarrito(carrito);
-  }
-}

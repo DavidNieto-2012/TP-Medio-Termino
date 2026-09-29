@@ -2,6 +2,7 @@
 
 import { LitElement, html } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
+import './carrito-detalle.js'; // Importamos el detalle para que esté disponible dentro del drawer
 
 class CarritoDrawer extends LitElement {
   static styles = [tailwindStyles];
@@ -15,7 +16,6 @@ class CarritoDrawer extends LitElement {
     this.abierto = false;
   }
 
-  // función que se ejecuta cuando se dispara el evento 'carrito-abrir' del carrito-boton
   _carritoAbrir = () => {
     this.abierto = true;
   }
@@ -24,24 +24,31 @@ class CarritoDrawer extends LitElement {
     this.abierto = false;
   }
 
-  // se ejecuta cuando el componente se agrega al DOM
+  _handleKeyDown = (e) => {
+    if (e.key === 'Escape' && this.abierto) {
+      this._carritoCerrar();
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener('carrito-abrir', this._carritoAbrir);
     window.addEventListener('carrito-cerrar', this._carritoCerrar);
+    window.addEventListener('keydown', this._handleKeyDown);
   }
 
-  // se ejecuta cuando el componente se elimina del DOM
   disconnectedCallback() {
     super.disconnectedCallback();
     window.removeEventListener('carrito-abrir', this._carritoAbrir);
     window.removeEventListener('carrito-cerrar', this._carritoCerrar);
+    window.removeEventListener('keydown', this._handleKeyDown);
   }
 
   render() {
     if (!this.abierto) {
-      return html``; // no renderiza nada si está cerrado
+      return html``;
     }
+
     return html`
       <div
         class="carrito-drawer-overlay ${this.abierto ? 'abierto' : ''}"
@@ -51,7 +58,7 @@ class CarritoDrawer extends LitElement {
         <div class="flex justify-between items-center p-4 border-b border-slate-200">
           <h2 class="text-lg font-semibold">Tu carrito</h2>
           <button
-            class="text-2xl leading-none px-2 hover:text-red-500"
+            class="text-2xl leading-none px-2 hover:text-red-500 cursor-pointer"
             @click=${this._carritoCerrar}
             aria-label="Cerrar carrito"
           >

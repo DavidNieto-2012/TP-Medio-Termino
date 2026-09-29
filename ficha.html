@@ -1,1 +1,24 @@
-<script type="module" src="/src/ficha.js"></script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalle del Producto</title>
+  <link rel="stylesheet" href="/src/index.css" />
+  <script type="module" src="/src/components/ficha-detalle.js"></script>
+  <script type="module" src="/src/components/carrito/carrito-boton.js"></script>
+  <script type="module" src="/src/components/carrito/carrito-drawer.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen">
+  <!-- Botón flotante del carrito -->
+  <div class="fixed top-4 right-4 z-50">
+    <carrito-boton></carrito-boton>
+  </div>
+
+  <!-- Vista detallada del producto seleccionado -->
+  <ficha-detalle></ficha-detalle>
+
+  <!-- Panel lateral del carrito -->
+  <carrito-drawer></carrito-drawer>
+</body>
+</html>
