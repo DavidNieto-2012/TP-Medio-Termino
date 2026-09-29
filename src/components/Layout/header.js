@@ -50,10 +50,10 @@ export class AppHeader extends LitElement {
         <!-- Categorías -->
         <nav class="bg-slate-50 border-t border-slate-100 px-4 py-2 overflow-x-auto text-xs sm:text-sm font-medium text-slate-600 flex gap-4 sm:gap-6 justify-start md:justify-center">
           <a href="/" class="hover:text-indigo-600 text-indigo-600 font-bold whitespace-nowrap">Inicio</a>
-          <a href="/listado.html?categoria=1" class="hover:text-indigo-600 whitespace-nowrap">Almacén</a>
-          <a href="/listado.html?categoria=2" class="hover:text-indigo-600 whitespace-nowrap">Bebidas</a>
-          <a href="/listado.html?categoria=3" class="hover:text-indigo-600 whitespace-nowrap">Frescos</a>
-          <a href="/listado.html?categoria=4" class="hover:text-indigo-600 whitespace-nowrap">Limpieza</a>
+          <a href="/listado.html?categoria=325" class="hover:text-indigo-600 whitespace-nowrap">Verduras</a>
+          <a href="/listado.html?categoria=326" class="hover:text-indigo-600 whitespace-nowrap">Carnes</a>
+          <a href="/listado.html?categoria=327" class="hover:text-indigo-600 whitespace-nowrap">Higiene</a>
+          <a href="/listado.html?categoria=328" class="hover:text-indigo-600 whitespace-nowrap">Limpieza</a>
           <a href="/listado.html" class="hover:text-indigo-600 text-slate-400 whitespace-nowrap">Ver todos →</a>
         </nav>
       </header>

@@ -4,57 +4,57 @@ import { obtenerProductos, obtenerProductosEnPromocion } from '../../api/product
 import '../tarjeta/tarjeta-producto.js';
 
 export class PaginaHome extends LitElement {
-    static styles = [
-        tailwindStyles,
-        css`
+  static styles = [
+    tailwindStyles,
+    css`
       :host {
         display: block;
         min-height: 60vh;
       }
     `
-    ];
+  ];
 
-    static properties = {
-        promociones: { type: Array },
-        destacados: { type: Array },
-        cargando: { type: Boolean }
-    };
+  static properties = {
+    promociones: { type: Array },
+    destacados: { type: Array },
+    cargando: { type: Boolean }
+  };
 
-    constructor() {
-        super();
-        this.promociones = [];
-        this.destacados = [];
-        this.cargando = true;
+  constructor() {
+    super();
+    this.promociones = [];
+    this.destacados = [];
+    this.cargando = true;
+  }
+
+  // Se ejecuta automáticamente al montarse el componente en el DOM
+  async connectedCallback() {
+    super.connectedCallback();
+    await this.cargarProductos();
+  }
+
+  async cargarProductos() {
+    try {
+      this.cargando = true;
+
+      // Llamadas en paralelo a las funciones de la API
+      const [todos, promos] = await Promise.all([
+        obtenerProductos(),
+        obtenerProductosEnPromocion()
+      ]);
+
+      this.promociones = Array.isArray(promos) ? promos : [];
+      // Tomamos hasta 8 productos para la sección de destacados
+      this.destacados = Array.isArray(todos) ? todos.slice(0, 8) : [];
+    } catch (error) {
+      console.error("Error al cargar productos en Home:", error);
+    } finally {
+      this.cargando = false;
     }
+  }
 
-    // Se ejecuta automáticamente al montarse el componente en el DOM
-    async connectedCallback() {
-        super.connectedCallback();
-        await this.cargarProductos();
-    }
-
-    async cargarProductos() {
-        try {
-            this.cargando = true;
-
-            // Llamadas en paralelo a las funciones de la API
-            const [todos, promos] = await Promise.all([
-                obtenerProductos(),
-                obtenerProductosEnPromocion()
-            ]);
-
-            this.promociones = Array.isArray(promos) ? promos : [];
-            // Tomamos hasta 8 productos para la sección de destacados
-            this.destacados = Array.isArray(todos) ? todos.slice(0, 8) : [];
-        } catch (error) {
-            console.error("Error al cargar productos en Home:", error);
-        } finally {
-            this.cargando = false;
-        }
-    }
-
-    render() {
-        return html`
+  render() {
+    return html`
       <main class="max-w-7xl mx-auto px-4 py-6 space-y-12">
         
         <!-- 1. Banner Ofertas de la semana -->
@@ -69,13 +69,13 @@ export class PaginaHome extends LitElement {
 
         <!-- Indicador de carga -->
         ${this.cargando
-                ? html`
+        ? html`
             <div class="flex flex-col items-center justify-center py-20 text-slate-500">
               <div class="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mb-4"></div>
               <p class="text-sm font-medium">Cargando ofertas del supermercado...</p>
             </div>
           `
-                : html`
+        : html`
             <!-- 2. Sección Promociones -->
             <section>
               <div class="flex items-center justify-between mb-6">
@@ -92,10 +92,10 @@ export class PaginaHome extends LitElement {
               <!-- Grilla de Tarjetas -->
               <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                 ${this.promociones.map(
-                    (producto) => html`
+          (producto) => html`
                     <product-card .producto=${producto}></product-card>
                   `
-                )}
+        )}
               </div>
             </section>
 
@@ -115,21 +115,19 @@ export class PaginaHome extends LitElement {
               <!-- Grilla de Tarjetas -->
               <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                 ${this.destacados.map(
-                    (producto) => html`
+          (producto) => html`
                     <product-card .producto=${producto}></product-card>
                   `
-                )}
+        )}
               </div>
             </section>
           `
-            }
+      }
       </main>
     `;
-    }
+  }
 }
 
 
 customElements.define('pagina-home', PaginaHome);
-if (!customElements.get('tp-medio-termino')) {
-    customElements.define('tp-medio-termino', class extends PaginaHome { });
-}
+
