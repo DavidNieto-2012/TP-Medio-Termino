@@ -1,7 +1,8 @@
 import { LitElement, html } from 'lit';
 import tailwindStyles from './base/tailwind-element.js';
 import { obtenerProductos } from '../api/productos.js';
-import { agregarAlCarrito } from '../store/carrito-storage.js';
+import { agregarAlCarrito } from '../cart.js';
+import { urlImagen } from '../api/api.js';
 
 class FichaDetalle extends LitElement {
   static styles = [tailwindStyles];
@@ -79,6 +80,7 @@ class FichaDetalle extends LitElement {
     }
 
     const p = this.producto;
+    const imagen = urlImagen(p.pictures?.[0]);
 
     return html`
       <div class="max-w-5xl mx-auto p-4 md:p-8">
