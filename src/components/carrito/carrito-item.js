@@ -2,6 +2,7 @@
 
 import { LitElement, html } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
+import { urlImagen } from '../../api/api.js';
 
 class CarritoItem extends LitElement {
   static styles = [tailwindStyles];
@@ -15,9 +16,13 @@ class CarritoItem extends LitElement {
   }
 
   render() {
+    const imagen = urlImagen(
+      this.item?.pictures?.[0] || this.item?.picture || this.item?.image || this.item?.imagen
+    );
+
     return html`
     <div class="carrito-item-fila">
-      <img class="carrito-item-imagen" src="${this.item.picture}" alt="${this.item.title}" />
+      <img class="carrito-item-imagen" src="${imagen}" alt="${this.item.title}" />
       <div class="carrito-item-info">
         <p class="carrito-item-titulo">${this.item.title}</p>
         <p class="carrito-item-precio">$${(this.item.price * this.item.cantidad).toFixed(2)}</p>
