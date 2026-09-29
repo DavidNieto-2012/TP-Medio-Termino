@@ -3,7 +3,7 @@
 import { LitElement, html, css } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
 import './carrito-item.js'; // Importamos el item para asegurar su registro en customElements
-import { obtenerItems, incrementarProducto, decrementarProducto, quitarProducto, vaciarCarrito, obtenerTotales } from '../../store/carrito-storage.js';
+import { agregarAlCarrito, obtenerCarrito, obtenerTotalesCarrito, quitarDelCarrito } from '../../cart.js';
 
 class CarritoDetalle extends LitElement {
   static styles = [
@@ -29,23 +29,23 @@ class CarritoDetalle extends LitElement {
 
   // función que se ejecuta cuando se dispara el evento 'carrito-actualizado'
   _actualizarItems = () => {
-    const items = obtenerItems();
+    const items = obtenerCarrito();
     this.items = [...items]; // Se asigna una nueva referencia para asegurar la reactividad de Lit
   }
 
   _carritoIncrementar = (e) => {
-    const id = e.detail.id;
-    incrementarProducto(id);
+    const item = e.detail.item;
+    agregarAlCarrito(item);
   }
 
   _carritoDecrementar = (e) => {
     const id = e.detail.id;
-    decrementarProducto(id);
+    quitarDelCarrito(id, true);
   }
 
   _carritoQuitar = (e) => {
     const id = e.detail.id;
-    quitarProducto(id);
+    quitarDelCarrito(id);
   }
 
   _onVaciar() {
@@ -76,8 +76,8 @@ class CarritoDetalle extends LitElement {
   }
 
   render() {
-    const totales = obtenerTotales() || {};
-    const totalPrecio = totales.totalPrecio || 0;
+    const totales = obtenerTotalesCarrito() || {};
+    const totalPrecio = totales.precioTotal || 0;
 
     return html`
       <div class="p-4">
