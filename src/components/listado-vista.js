@@ -23,8 +23,17 @@ class ListadoVista extends LitElement {
 
   async connectedCallback() {
     super.connectedCallback();
+
+    // 1. Leemos si viene ?categoria= en la URL
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('categoria');
+    if (cat) {
+      this.categoriaSeleccionada = cat;
+    }
+
     await this._cargarCatalogo();
   }
+
 
   async _cargarCatalogo() {
     this.cargando = true;
@@ -40,9 +49,13 @@ class ListadoVista extends LitElement {
   }
 
   render() {
-    const productosFiltrados = this.categoriaSeleccionada === 'todas'
+    const productosFiltrados = (!this.categoriaSeleccionada || this.categoriaSeleccionada === 'todas')
       ? this.productos
-      : this.productos.filter(p => (p.category || p.categoria) === this.categoriaSeleccionada);
+      : this.productos.filter(p =>
+        String(p.category_id) === String(this.categoriaSeleccionada) ||
+        String(p.category?.id) === String(this.categoriaSeleccionada)
+      );
+
 
     return html`
       <section class="max-w-7xl mx-auto px-4 py-8">

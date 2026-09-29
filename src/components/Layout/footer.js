@@ -32,10 +32,10 @@ export class AppFooter extends LitElement {
           <div>
             <h4 class="text-white font-semibold text-sm mb-3">Categorías</h4>
             <ul class="text-xs space-y-2 text-slate-400">
-              <li><a href="/listado.html?categoria=1" class="hover:text-white">Almacén</a></li>
-              <li><a href="/listado.html?categoria=2" class="hover:text-white">Bebidas</a></li>
-              <li><a href="/listado.html?categoria=3" class="hover:text-white">Frescos</a></li>
-              <li><a href="/listado.html?categoria=4" class="hover:text-white">Limpieza</a></li>
+              <li><a href="/listado.html?categoria=325" class="hover:text-white">Verduras</a></li>
+              <li><a href="/listado.html?categoria=326" class="hover:text-white">Carnes</a></li>
+              <li><a href="/listado.html?categoria=327" class="hover:text-white">Higiene</a></li>
+              <li><a href="/listado.html?categoria=328" class="hover:text-white">Limpieza</a></li>
             </ul>
           </div>
 
