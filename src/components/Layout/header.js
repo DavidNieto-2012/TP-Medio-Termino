@@ -16,7 +16,7 @@ export class AppHeader extends LitElement {
   render() {
     return html`
            
-
+      <header>
         <!-- Navbar -->
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <!-- Logo Neutro -->
