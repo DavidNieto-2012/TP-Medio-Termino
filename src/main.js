@@ -4,14 +4,20 @@ import './index.css';
 // 2. Registro de los componentes principales del proyecto
 import './components/tp-medio-termino.js';
 import './components/carrito/index-carrito.js';
+<<<<<<< HEAD
 
 // Header y Footer (comentados por ahora para evitar errores si la ruta varía)
 // import './components/layout/header.js';
 // import './components/layout/footer.js';
+=======
+import './components/tarjeta/tarjeta-producto.js';
+//header y footer
+import './components/Layout/header.js';
+import './components/Layout/footer.js';
+>>>>>>> origin
 
 // 3. Importación de las funciones de la API
 import { obtenerProductos, obtenerProductosEnPromocion } from "./api/productos.js";
-import { obtenerCarrito, agregarAlCarrito } from './cart.js';
 
 // 4. Importación del módulo del Carrito como objeto completo (evita errores de caché de Vite)
 import * as CarritoStorage from './store/carrito-storage.js';
@@ -29,10 +35,19 @@ const root = document.getElementById('root');
 
 // 6. Inyectar los componentes en la pantalla
 if (root) {
+<<<<<<< HEAD
     root.innerHTML = `
     <tp-medio-termino></tp-medio-termino>
     <carrito-boton></carrito-boton>
     <carrito-drawer></carrito-drawer>
+=======
+  root.innerHTML = `
+    <app-header></app-header>
+    <tp-medio-termino></tp-medio-termino>
+    <carrito-boton></carrito-boton>
+    <carrito-drawer></carrito-drawer>
+    <app-footer></app-footer>
+>>>>>>> origin
     `;
 }
 
@@ -44,11 +59,19 @@ async function probarConexionAPI() {
         const productos = await obtenerProductos();
         console.log(" Lista completa de productos:", productos);
 
+<<<<<<< HEAD
         const productosPromo = await obtenerProductosEnPromocion();
         console.log(" Productos en promoción:", productosPromo);
     } catch (error) {
         console.error(" Error al conectar con la API:", error);
     }
+=======
+    const productosPromo = await obtenerProductosEnPromocion();
+    console.log(" Productos en promoción:", productosPromo);
+  } catch (error) {
+    console.error(" Error al conectar con la API:", error);
+  }
+>>>>>>> origin
 }
 
 // Ejecutar prueba de API

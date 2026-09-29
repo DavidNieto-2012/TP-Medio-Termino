@@ -3,20 +3,20 @@ import { LitElement, html, css } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
 
 export class AppFooter extends LitElement {
-    static styles = [
-        tailwindStyles,
-        css`
+  static styles = [
+    tailwindStyles,
+    css`
           :host {
             display: block;
             width: 100%;
           }
         `
-    ];
+  ];
 
 
-    render() {
-        return html`
-           <footer class="bg-slate-900 text-slate-300 border-t border-slate-800">
+  render() {
+    return html`
+           <footer class="bg-slate-900 text-slate-300 mt-16 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <!-- Logo Neutro -->
@@ -51,7 +51,6 @@ export class AppFooter extends LitElement {
           <div>
             <h4 class="text-white font-semibold text-sm mb-3">Medios de Pago</h4>
             <p class="text-xs text-slate-400 mb-2">Aceptamos todas las tarjetas de crédito, débito y transferencias.</p>
-            <div class="flex gap-2 text-lg">💳 🏦 📱</div>
           </div>
         </div>
 
@@ -61,7 +60,7 @@ export class AppFooter extends LitElement {
       </footer>
 
     `;
-    }
+  }
 }
 
 customElements.define('app-footer', AppFooter);

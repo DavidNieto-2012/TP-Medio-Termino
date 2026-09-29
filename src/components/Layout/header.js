@@ -3,25 +3,21 @@ import tailwindStyles from '../base/tailwind-element.js';
 import '../carrito/carrito-boton.js';
 
 export class AppHeader extends LitElement {
-    static styles = [
-        tailwindStyles,
-        css`
+  static styles = [
+    tailwindStyles,
+    css`
       :host {
         display: block;
         width: 100%;
       }
     `
-    ];
+  ];
 
-    render() {
-        return html`
-            <header class="w-full bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
-        <!-- Barra superior informativa neutra -->
-        <div class="bg-indigo-600 text-white text-xs py-1.5 px-4 text-center font-medium">
-          🛒 Entregas en el día • Envíos gratis en compras seleccionadas
-        </div>
-
-        <!-- Contenedor Principal Navbar -->
+  render() {
+    return html`
+           
+      <header>
+        <!-- Navbar -->
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <!-- Logo Neutro -->
           <a href="/" class="flex items-center gap-2 text-decoration-none">
@@ -36,10 +32,9 @@ export class AppHeader extends LitElement {
             <div class="relative">
               <input 
                 type="text" 
-                placeholder="¿Qué estás buscando hoy?" 
+                placeholder="Buscar" 
                 class="w-full bg-slate-100 border border-slate-200 rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white text-slate-700"
               />
-              <span class="absolute right-3 top-2.5 text-slate-400">🔍</span>
             </div>
           </div>
 
@@ -52,7 +47,7 @@ export class AppHeader extends LitElement {
           </div>
         </div>
 
-        <!-- Barra inferior de categorías -->
+        <!-- Categorías -->
         <nav class="bg-slate-50 border-t border-slate-100 px-4 py-2 overflow-x-auto text-xs sm:text-sm font-medium text-slate-600 flex gap-4 sm:gap-6 justify-start md:justify-center">
           <a href="/" class="hover:text-indigo-600 text-indigo-600 font-bold whitespace-nowrap">Inicio</a>
           <a href="/listado.html?categoria=1" class="hover:text-indigo-600 whitespace-nowrap">Almacén</a>
@@ -64,7 +59,7 @@ export class AppHeader extends LitElement {
       </header>
 
     `;
-    }
+  }
 }
 
 customElements.define('app-header', AppHeader);
