@@ -8,6 +8,11 @@ import './components/tarjeta/tarjeta-producto.js';
 import './components/Layout/header.js';
 import './components/Layout/footer.js';
 
+//home
+
+import './components/Home/Home.js';
+
+
 // 3. Importación de las funciones de la API
 import { obtenerProductos, obtenerProductosEnPromocion } from "./api/productos.js";
 
@@ -18,7 +23,7 @@ const root = document.getElementById('root');
 if (root) {
   root.innerHTML = `
     <app-header></app-header>
-    <tp-medio-termino></tp-medio-termino>
+    <pagina-home></pagina-home>
     <carrito-boton></carrito-boton>
     <carrito-drawer></carrito-drawer>
     <app-footer></app-footer>
