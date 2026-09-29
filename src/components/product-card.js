@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
 import tailwindStyles from './base/tailwind-element.js';
+import { urlImagen } from '../api/api.js';
 
 class ProductCard extends LitElement {
   static styles = [tailwindStyles];
@@ -22,7 +23,7 @@ class ProductCard extends LitElement {
     const p = this.producto || {};
     const nombre = p.title || p.name || 'Producto';
     const precio = p.price || p.precio || 0;
-    const imagen = p.image || p.imagen || 'https://via.placeholder.com/300';
+    const imagen = urlImagen(p.pictures?.[0]);
     const categoria = p.category || p.categoria || 'General';
 
     return html`

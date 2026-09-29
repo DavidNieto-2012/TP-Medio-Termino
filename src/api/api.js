@@ -24,5 +24,9 @@ export async function procesarRespuesta(respuesta) {    //Recibe el objeto respu
   return datos;
 }
 
-
+export function urlImagen(ruta) {
+  return ruta
+    ? new URL(ruta, API_URL).href
+    : 'https://placehold.co/300x300?text=Sin+Imagen';
+}
 
