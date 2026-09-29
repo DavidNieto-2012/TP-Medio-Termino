@@ -43,7 +43,7 @@ class CarritoItem extends LitElement {
   // dispara un evento personalizado para que el padre (carrito-detalle) sepa que hay que hacer algo con el item
   _incrementarProducto() {
     this.dispatchEvent(new CustomEvent('carrito-incrementar', {
-      detail: { id: this.item.id },
+      detail: { item: this.item },
       bubbles: true,
       composed: true,
     }));

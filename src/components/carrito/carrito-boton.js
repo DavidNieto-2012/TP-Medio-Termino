@@ -16,7 +16,7 @@ class CarritoBoton extends LitElement {
 
     // Función que se ejecuta cuando se dispara el evento 'carrito-actualizado'
     _actualizarCantidad = () => {
-        const totales = obtenerTotales();
+        const totales = obtenerTotalesCarrito();
         // Mapeamos a cantidadTotal (que es como lo devuelve carrito-storage.js)
         this.cantidad = totales?.cantidadTotal || 0;
     }
