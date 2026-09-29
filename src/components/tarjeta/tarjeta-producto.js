@@ -2,6 +2,7 @@
 import { LitElement, html, css } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
 import { agregarAlCarrito } from '../../cart.js';
+import { urlImagen } from '../../api/api.js';
 
 export class ProductCard extends LitElement {
   static styles = [
@@ -36,9 +37,7 @@ export class ProductCard extends LitElement {
     const { id, title, price, pictures } = this.producto;
 
     // la imagen "sin imagen" en caso de no tener una
-    const imagen = pictures && pictures.length > 0
-      ? pictures[0]
-      : 'https://placehold.co/300x300?text=Sin+Imagen';
+    const imagen = urlImagen(pictures?.[0]);
 
     return html`
       <article class="relative flex flex-col justify-between bg-white border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-200 h-full group">
@@ -86,9 +85,6 @@ export class ProductCard extends LitElement {
   }
 }
 
-// se registra <product-card> y también <tarjeta-producto> no sé si esta bien.
 customElements.define('product-card', ProductCard);
-if (!customElements.get('tarjeta-producto')) {
-  customElements.define('tarjeta-producto', class extends ProductCard { });
-}
+
 

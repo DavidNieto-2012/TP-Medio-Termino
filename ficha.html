@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Detalle del Producto</title>
   <link rel="stylesheet" href="/src/index.css" />
   <script type="module" src="/src/components/ficha-detalle.js"></script>
-  <script type="module" src="/src/components/carrito/carrito-boton.js"></script>
   <script type="module" src="/src/components/carrito/carrito-drawer.js"></script>
+  <script type="module" src="/src/components/Layout/header.js"></script>
+  <script type="module" src="/src/components/Layout/footer.js"></script>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen">
-  <!-- Botón flotante del carrito -->
-  <div class="fixed top-4 right-4 z-50">
-    <carrito-boton></carrito-boton>
-  </div>
 
+<body class="bg-slate-900 text-slate-100 min-h-screen">
+  <app-header></app-header>
   <!-- Vista detallada del producto seleccionado -->
   <ficha-detalle></ficha-detalle>
 
   <!-- Panel lateral del carrito -->
   <carrito-drawer></carrito-drawer>
+  <app-footer></app-footer>
 </body>
+
 </html>

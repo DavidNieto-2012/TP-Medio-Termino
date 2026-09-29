@@ -92,7 +92,7 @@ class FichaDetalle extends LitElement {
           <!-- Galería / Imagen Principal -->
           <div class="flex items-center justify-center bg-slate-900/50 rounded-2xl p-4 border border-slate-700/50">
             <img 
-              src="${p.image || p.imagen || 'https://via.placeholder.com/400'}" 
+              src="${imagen}" 
               alt="${p.title || p.name}" 
               class="max-h-96 object-contain rounded-xl"
             />
