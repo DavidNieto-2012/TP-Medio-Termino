@@ -1,17 +1,15 @@
-
 // 1. Carga de los estilos globales con TailwindCSS
 import './index.css';
 
 // 2. Registro del componente principal del proyecto
 import './components/carrito/index-carrito.js';
-
+import './components/tarjeta/tarjeta-producto.js';
 //header y footer
 import './components/Layout/header.js';
 import './components/Layout/footer.js';
 
 // 3. Importación de las funciones de la API
 import { obtenerProductos, obtenerProductosEnPromocion } from "./api/productos.js";
-import { obtenerCarrito, agregarAlCarrito } from './cart.js';
 
 // 4. Seleccionar el contenedor principal del HTML
 const root = document.getElementById('root');
@@ -20,9 +18,10 @@ const root = document.getElementById('root');
 if (root) {
   root.innerHTML = `
     <app-header></app-header>
+    <tp-medio-termino></tp-medio-termino>
+    <carrito-boton></carrito-boton>
     <carrito-drawer></carrito-drawer>
     <app-footer></app-footer>
-    
     `;
 }
 
@@ -36,16 +35,6 @@ async function probarConexionAPI() {
 
     const productosPromo = await obtenerProductosEnPromocion();
     console.log(" Productos en promoción:", productosPromo);
-
-    //agrego tres productos al carro
-    const productosParaCarrito = productos.slice(0, 3);
-
-    productosParaCarrito.forEach(producto => {
-      agregarAlCarrito(producto);
-    });
-
-    console.log(obtenerCarrito());
-
   } catch (error) {
     console.error(" Error al conectar con la API:", error);
   }

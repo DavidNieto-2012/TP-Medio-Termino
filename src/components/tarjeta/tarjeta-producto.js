@@ -1,63 +1,94 @@
-// src/components/layout/app-header.js
-import { LitElement, html } from 'lit';
+
+import { LitElement, html, css } from 'lit';
 import tailwindStyles from '../base/tailwind-element.js';
-import '../carrito/carrito-boton.js';
+import { agregarAlCarrito } from '../../cart.js';
 
-export class AppHeader extends LitElement {
-    static styles = [tailwindStyles];
+export class ProductCard extends LitElement {
+  static styles = [
+    tailwindStyles,
+    css`
+      :host {
+        display: block;
+      }
+    `
+  ];
 
-    render() {
-        return html`
-      <header class="w-full bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
-        <!-- Barra superior roja estilo Coto -->
-        <div class="bg-red-600 text-white text-xs py-1 px-4 text-center font-medium">
-          🛒 Entregas en el día • Descuentos exclusivos con Comunidad Coto
-        </div>
+  static properties = {
+    producto: { type: Object }
+  };
 
-        <!-- Contenedor Principal Navbar -->
-        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-          <!-- Logo -->
-          <a href="/" class="flex items-center gap-2 text-decoration-none">
-            <span class="bg-red-600 text-white font-black text-2xl tracking-tighter px-2.5 py-0.5 rounded-lg shadow-sm">
-              COTO
-            </span>
-            <span class="font-bold text-slate-800 tracking-wide text-lg hidden sm:inline">DIGITAL</span>
-          </a>
+  constructor() {
+    super();
+    this.producto = null;
+  }
 
-          <!-- Buscador simulado -->
-          <div class="flex-1 max-w-md hidden md:block">
-            <div class="relative">
-              <input 
-                type="text" 
-                placeholder="¿Qué producto estás buscando hoy?" 
-                class="w-full bg-slate-100 border border-slate-200 rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:border-red-500 focus:bg-white text-slate-700"
-              />
-              <span class="absolute right-3 top-2.5 text-slate-400">🔍</span>
-            </div>
-          </div>
-
-          <!-- Acciones derecha (Links y Botón de Carrito) -->
-          <div class="flex items-center gap-3">
-            <a href="/listado.html" class="text-sm font-semibold text-slate-700 hover:text-red-600 hidden sm:inline">
-              Catálogo
-            </a>
-            <!-- Botón del carrito desarrollado por Barby -->
-            <carrito-boton></carrito-boton>
-          </div>
-        </div>
-
-        <!-- Barra inferior de navegación rápida / categorías -->
-        <nav class="bg-slate-50 border-t border-slate-100 px-4 py-2 overflow-x-auto text-xs sm:text-sm font-medium text-slate-600 flex gap-4 sm:gap-6 justify-start md:justify-center">
-          <a href="/" class="hover:text-red-600 text-red-600 font-bold whitespace-nowrap">Inicio</a>
-          <a href="/listado.html?categoria=1" class="hover:text-red-600 whitespace-nowrap">Almacén</a>
-          <a href="/listado.html?categoria=2" class="hover:text-red-600 whitespace-nowrap">Bebidas</a>
-          <a href="/listado.html?categoria=3" class="hover:text-red-600 whitespace-nowrap">Frescos</a>
-          <a href="/listado.html?categoria=4" class="hover:text-red-600 whitespace-nowrap">Limpieza</a>
-          <a href="/listado.html" class="hover:text-red-600 text-slate-400 whitespace-nowrap">Ver todos →</a>
-        </nav>
-      </header>
-    `;
+  // Agrega el producto al carrito usando la función del storage
+  _agregarAlCarrito(e) {
+    e.stopPropagation();
+    if (this.producto) {
+      agregarAlCarrito(this.producto);
     }
+  }
+
+  render() {
+    if (!this.producto) return html``;
+
+    const { id, title, price, pictures } = this.producto;
+
+    // la imagen "sin imagen" en caso de no tener una
+    const imagen = pictures && pictures.length > 0
+      ? pictures[0]
+      : 'https://placehold.co/300x300?text=Sin+Imagen';
+
+    return html`
+      <article class="relative flex flex-col justify-between bg-white border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-200 h-full group">
+
+        <!-- Imagen y Enlace a la Ficha de detalle -->
+        <a href="/ficha.html?id=${id}" class="block overflow-hidden rounded-xl bg-slate-50 mb-3 aspect-square flex items-center justify-center">
+          <img 
+            src="${imagen}" 
+            alt="${title}" 
+            loading="lazy"
+            class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+          />
+        </a>
+
+        <!-- Información del producto -->
+        <div class="flex-1 flex flex-col justify-between">
+          <h3 class="font-medium text-slate-800 text-sm md:text-base line-clamp-2 leading-snug hover:text-indigo-600">
+            <a href="/ficha.html?id=${id}">${title}</a>
+          </h3>
+
+          <!-- Precio y Botón de compra -->
+          <div class="mt-4 pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+            <div>
+              <span class="text-xs text-slate-400 block font-normal">Precio</span>
+              <span class="text-lg md:text-xl font-bold text-slate-900">
+                $${Number(price).toLocaleString('es-AR', { minimumFractionDigits: 2 })}
+              </span>
+            </div>
+
+            <!-- Botón agregar al carrito -->
+            <button 
+              type="button"
+              @click=${this._agregarAlCarrito}
+              title="Agregar al carrito"
+              class="bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-medium p-2.5 rounded-xl flex items-center justify-center transition-colors shadow-sm cursor-pointer"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }
 }
 
-customElements.define('app-header', AppHeader);
+// se registra <product-card> y también <tarjeta-producto> no sé si esta bien.
+customElements.define('product-card', ProductCard);
+if (!customElements.get('tarjeta-producto')) {
+  customElements.define('tarjeta-producto', class extends ProductCard { });
+}
+
