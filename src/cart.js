@@ -6,9 +6,6 @@ export function obtenerCarrito() {
   return carritoGuardado ? JSON.parse(carritoGuardado) : [];
 }
 
-export function obtenerItems() {
-  return obtenerCarrito();
-}
 
 // 2. Guardar en localStorage y notificar a la app
 function guardarCarrito(carrito) {
@@ -49,9 +46,7 @@ export function quitarDelCarrito(idProducto, soloReducir = false) {
   guardarCarrito(carrito);
 }
 
-export function decrementarProducto(id) {
-  quitarDelCarrito(id, true);
-}
+
 
 // 5. Vaciar todo el carrito
 export function vaciarCarrito() {
@@ -71,6 +66,3 @@ export function obtenerTotalesCarrito() {
   return { cantidadTotal, precioTotal };
 }
 
-export function obtenerTotales() {
-  return obtenerTotalesCarrito();
-}
