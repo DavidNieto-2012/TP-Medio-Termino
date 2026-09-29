@@ -1,7 +1,8 @@
 import { LitElement, html } from 'lit';
 import tailwindStyles from './base/tailwind-element.js';
 import { obtenerProductos } from '../api/productos.js';
-import './product-card.js';
+
+import './tarjeta-producto.js';
 import './product-skeleton.js';
 
 class ListadoVista extends LitElement {
@@ -49,14 +50,14 @@ class ListadoVista extends LitElement {
           Catálogo de Productos
         </h1>
 
-        <!-- Estado 1: CARGANDO (Skeletons / Loaders) -->
+        
         ${this.cargando ? html`
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             ${Array(8).fill(0).map(() => html`<product-skeleton></product-skeleton>`)}
           </div>
         ` : ''}
 
-        <!-- Estado 2: CATEGORÍA VACÍA -->
+       
         ${!this.cargando && productosFiltrados.length === 0 ? html`
           <div class="flex flex-col items-center justify-center py-16 px-4 text-center bg-slate-800/40 border border-slate-700/50 rounded-3xl">
             <svg class="w-16 h-16 text-slate-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,11 +68,11 @@ class ListadoVista extends LitElement {
           </div>
         ` : ''}
 
-        <!-- Estado 3: GRILLA CON PRODUCTOS -->
+      
         ${!this.cargando && productosFiltrados.length > 0 ? html`
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             ${productosFiltrados.map(p => html`
-              <product-card .producto=${p}></product-card>
+              <tarjeta-producto .producto=${p}></tarjeta-producto>
             `)}
           </div>
         ` : ''}
