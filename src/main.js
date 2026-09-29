@@ -28,6 +28,7 @@ const root = document.getElementById('root');
 if (root) {
   root.innerHTML = `
     <app-header></app-header>
+    <pagina-home></pagina-home>
     <carrito-drawer></carrito-drawer>
     <app-footer></app-footer>
     `;
