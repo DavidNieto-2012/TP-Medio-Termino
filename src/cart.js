@@ -28,6 +28,9 @@ export function agregarAlCarrito(producto, cantidad = 1) {
   }
 
   guardarCarrito(carrito);
+  window.dispatchEvent(new CustomEvent('producto-agregado', {
+    detail: { producto }
+  }));
 }
 
 // 4. Quitar un producto o reducir su cantidad
