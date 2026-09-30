@@ -44,6 +44,15 @@ class CarritoDrawer extends LitElement {
     window.removeEventListener('keydown', this._handleKeyDown);
   }
 
+  updated(propiedadesCambiadas) {
+    super.updated(propiedadesCambiadas);
+    if (propiedadesCambiadas.has('abierto')) {
+      window.dispatchEvent(new CustomEvent('carrito-estado-cambiado', {
+        detail: { abierto: this.abierto }
+      }));
+    }
+  }
+
   render() {
     if (!this.abierto) {
       return html``;

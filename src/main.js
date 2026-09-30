@@ -4,6 +4,7 @@ import './index.css';
 // 2. Registro de los componentes principales del proyecto
 
 import './components/carrito/index-carrito.js';
+import './components/carrito/carrito-notificacion.js';
 import './components/tarjeta/tarjeta-producto.js';
 //header y footer
 import './components/Layout/header.js';
@@ -29,6 +30,7 @@ if (root) {
   root.innerHTML = `
     <app-header></app-header>
     <pagina-home></pagina-home>
+    <carrito-notificacion></carrito-notificacion>
     <carrito-drawer></carrito-drawer>
     <app-footer></app-footer>
     `;
