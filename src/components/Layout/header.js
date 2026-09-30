@@ -9,6 +9,9 @@ export class AppHeader extends LitElement {
       :host {
         display: block;
         width: 100%;
+        position: sticky;
+        top:0;
+        z-index: 50;
       }
     `
   ];
@@ -16,7 +19,7 @@ export class AppHeader extends LitElement {
   render() {
     return html`
            
-      <header>
+      <header class="bg-white/100">
         <!-- Navbar -->
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <!-- Logo Neutro -->
@@ -49,7 +52,7 @@ export class AppHeader extends LitElement {
 
         <!-- Categorías -->
         <nav class="bg-slate-50 border-t border-slate-100 px-4 py-2 overflow-x-auto text-xs sm:text-sm font-medium text-slate-600 flex gap-4 sm:gap-6 justify-start md:justify-center">
-          <a href="/" class="hover:text-indigo-600 text-indigo-600 font-bold whitespace-nowrap">Inicio</a>
+          <a href="/" class="whitespace-nowrap">Inicio</a>
           <a href="/listado.html?categoria=325" class="hover:text-indigo-600 whitespace-nowrap">Verduras</a>
           <a href="/listado.html?categoria=326" class="hover:text-indigo-600 whitespace-nowrap">Carnes</a>
           <a href="/listado.html?categoria=327" class="hover:text-indigo-600 whitespace-nowrap">Higiene</a>
