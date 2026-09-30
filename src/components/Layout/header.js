@@ -52,7 +52,7 @@ export class AppHeader extends LitElement {
 
         <!-- Categorías -->
         <nav class="bg-slate-50 border-t border-slate-100 px-4 py-2 overflow-x-auto text-xs sm:text-sm font-medium text-slate-600 flex gap-4 sm:gap-6 justify-start md:justify-center">
-          <a href="/" class="whitespace-nowrap">Inicio</a>
+          <a href="/" class="hover:text-indigo-600 whitespace-nowrap">Inicio</a>
           <a href="/listado.html?categoria=325" class="hover:text-indigo-600 whitespace-nowrap">Verduras</a>
           <a href="/listado.html?categoria=326" class="hover:text-indigo-600 whitespace-nowrap">Carnes</a>
           <a href="/listado.html?categoria=327" class="hover:text-indigo-600 whitespace-nowrap">Higiene</a>
